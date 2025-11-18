@@ -27,8 +27,8 @@ function App() {
   }
 
   return (
-    <div style={{ padding: "20px", color: "white" }}>
-      <h1>Weather App</h1>
+    <div className="app">
+      <h1 className="app__title">Weather App</h1>
 
       <SearchForm
         city={city}
@@ -36,9 +36,21 @@ function App() {
         onSearch={handleSearch}
       />
 
-      {loading && <p>Завантаження...</p>}
-      {error && <p style={{ color: "red" }}>Помилка: {error}</p>}
+      {loading && (
+        <p className="status-message">Завантаження...</p>
+      )}
+
+      {error && (
+        <p className="status-message status-message--error">
+          Помилка: {error}
+        </p>
+      )}
+
       {weather && <WeatherCard weather={weather} />}
+
+      <p className="app__footer">
+        Дані надані сервісом OpenWeatherMap
+      </p>
     </div>
   )
 }
