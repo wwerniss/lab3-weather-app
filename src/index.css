@@ -126,7 +126,7 @@ body {
   gap: 4px;
   overflow: hidden;
   animation: fade-in 0.2s ease-out;
-    box-shadow:
+  box-shadow:
     0 16px 35px rgba(15, 23, 42, 0.9),
     0 0 25px rgba(56, 189, 248, 0.25),
     0 0 0 1px rgba(56, 189, 248, 0.35);
@@ -226,9 +226,60 @@ body {
   }
 }
 
+/* Прогноз на тиждень */
+
+.forecast {
+  margin-top: 18px;
+}
+
+.forecast__title {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #9ca3af;
+}
+
+.forecast__list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.forecast-day {
+  padding: 8px 6px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 11px;
+}
+
+.forecast-day__name {
+  text-transform: lowercase;
+}
+
+.forecast-day__icon {
+  width: 26px;
+  height: 26px;
+}
+
+.forecast-day__temp {
+  font-weight: 600;
+}
+
 /* Адаптив */
 
 @media (max-width: 480px) {
+
+  .forecast__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .app {
     padding: 18px 16px 14px;
   }

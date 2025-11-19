@@ -1,11 +1,13 @@
 import { useState } from "react"
 import SearchForm from "./components/SearchForm"
 import WeatherCard from "./components/WeatherCard"
-import { getWeather } from "./api/getWeather"
+import ForecastList from "./components/ForecastList"
+import { getWeather, getForecast } from "./api/getWeather"
 
 function App() {
   const [city, setCity] = useState("")
   const [weather, setWeather] = useState(null)
+  const [forecast, setForecast] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -16,11 +18,15 @@ function App() {
     setError(null)
 
     try {
-      const data = await getWeather(city)
-      setWeather(data)
+      const current = await getWeather(city)
+      setWeather(current)
+
+      const forecastData = await getForecast(city)
+      setForecast(forecastData)
     } catch (err) {
       setError(err)
       setWeather(null)
+      setForecast(null)
     }
 
     setLoading(false)
@@ -47,6 +53,8 @@ function App() {
       )}
 
       {weather && <WeatherCard weather={weather} />}
+
+      {forecast && <ForecastList forecast={forecast} />}
 
       <p className="app__footer">
         Дані надані сервісом OpenWeatherMap
