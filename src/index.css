@@ -292,3 +292,113 @@ body {
     font-size: 28px;
   }
 }
+
+/* Додаткові деталі погоди в картці */
+
+.weather-card__details {
+  margin-top: 10px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 10px;
+  font-size: 12px;
+}
+
+.weather-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.weather-detail__label {
+  color: #9ca3af;
+}
+
+.weather-detail__value {
+  font-weight: 600;
+}
+
+/* Кнопка геолокації */
+
+.search-form__geo-btn {
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  background: rgba(15, 23, 42, 0.95);
+  color: #e5e7eb;
+  cursor: pointer;
+  font-size: 14px;
+  transition:
+    background 0.15s ease,
+    transform 0.08s ease,
+    box-shadow 0.15s ease;
+}
+
+.search-form__geo-btn:hover {
+  background: #020617;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.7);
+  transform: translateY(-1px);
+}
+
+.search-form__geo-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Спінер */
+
+.loader-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.loader {
+  width: 28px;
+  height: 28px;
+  border: 3px solid rgb(26, 80, 156);
+  border-top-color: #445faa;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Підсвічування "сьогодні" в прогнозі */
+
+.forecast-day--today {
+  background: rgba(56, 189, 248, 0.18);
+  border-color: rgba(56, 189, 248, 0.85);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.4);
+}
+
+/* Різні режими тіні/фону для app */
+
+.app--clear {
+  box-shadow:
+    0 22px 50px rgba(15, 23, 42, 0.85),
+    0 0 0 1px rgba(56, 189, 248, 0.5);
+}
+
+.app--clouds {
+  box-shadow:
+    0 22px 50px rgba(15, 23, 42, 0.85),
+    0 0 0 1px rgba(148, 163, 184, 0.5);
+}
+
+.app--rain,
+.app--storm {
+  box-shadow:
+    0 24px 55px rgba(15, 23, 42, 0.95),
+    0 0 0 1px rgba(59, 130, 246, 0.7);
+}
+
+.app--snow {
+  box-shadow:
+    0 22px 50px rgba(15, 23, 42, 0.9),
+    0 0 0 1px rgba(209, 213, 219, 0.85);
+}

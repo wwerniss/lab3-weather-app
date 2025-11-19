@@ -1,6 +1,8 @@
 function getDailyForecast(list) {
-  // list – це масив з /forecast (кожні 3 години)
-  // Вибираємо максимум 5–7 унікальних дат
+// list – це масив з /forecast (кожні 3 години)
+// Вибираємо максимум 5–7 унікальних дат
+  if (!Array.isArray(list)) return []
+
   const result = []
   const usedDates = new Set()
 
@@ -22,7 +24,12 @@ function formatDayName(dtTxt) {
 }
 
 function ForecastList({ forecast }) {
+  if (!forecast || !Array.isArray(forecast.list)) return null
+
   const days = getDailyForecast(forecast.list)
+  const todayDate = new Date().toISOString().split("T")[0]
+
+  if (days.length === 0) return null
 
   return (
     <div className="forecast">
@@ -35,8 +42,16 @@ function ForecastList({ forecast }) {
           const icon = item.weather[0].icon
           const iconUrl = `https://openweathermap.org/img/wn/${icon}.png`
 
+          const [dateOnly] = item.dt_txt.split(" ")
+          const isToday = dateOnly === todayDate
+
           return (
-            <div className="forecast-day" key={item.dt}>
+            <div
+              className={`forecast-day ${
+                isToday ? "forecast-day--today" : ""
+              }`}
+              key={item.dt}
+            >
               <span className="forecast-day__name">{dayName}</span>
               <img
                 src={iconUrl}
